@@ -27,7 +27,7 @@ export default async function Home() {
     },
   })
   return (
-    <div className="flex flex-col gap-8">
+    <div className="my-8 flex flex-col gap-8">
       <PromoBanner src="/home/banner1.svg" alt="Até 55% de desconto esse mês" />
       <div className="px-5">
         <Categories />
