@@ -16,13 +16,7 @@ const CategoryPage = async ({ params }) => {
   if (!category) {
     return null
   }
-  // const products = await prismaClient.product.findMany({
-  //   where: {
-  //     category: {
-  //       slug: params.slug,
-  //     },
-  //   },
-  // })
+
   return (
     <div className="flex flex-col gap-8 p-5">
       <Badge
