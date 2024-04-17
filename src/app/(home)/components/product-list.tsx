@@ -12,10 +12,9 @@ const ProductList = ({ products }: ProductListProps) => {
       {products && products.length > 0 ? (
         products.map((product) => {
           return (
-            <ProductItem
-              key={product.id}
-              product={computeProductTotalPrice(product)}
-            />
+            <div className="w-[170px] max-w-[170px]" key={product.id}>
+              <ProductItem product={computeProductTotalPrice(product)} />
+            </div>
           )
         })
       ) : (
