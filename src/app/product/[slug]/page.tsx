@@ -1,6 +1,5 @@
-import ProductItem from '@/components/ui/product-item'
-import { computeProductTotalPrice } from '@/helpers/product'
 import { prismaClient } from '@/lib/prisma'
+import ProductImages from './components/product-images'
 
 interface ProductDetailsPageProps {
   params: {
@@ -17,7 +16,11 @@ const ProductDetailsPage = async ({
     },
   })
   if (!product) return null
-  return <ProductItem product={computeProductTotalPrice(product)} />
+  return (
+    <div className="">
+      <ProductImages imageUrls={product.imageUrls} productName={product.name} />
+    </div>
+  )
 }
 
 export default ProductDetailsPage
