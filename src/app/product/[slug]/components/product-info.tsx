@@ -23,7 +23,7 @@ const ProductInfo = ({
     setQuantity((prev) => (prev === 10 ? prev : prev + 1))
   }
   return (
-    <div className="flex flex-col px-5 md:px-0 ">
+    <div className="flex flex-col px-5 lg:px-0 ">
       <h2 className="text-lg">{name}</h2>
       <div className="item-center flex flex-col">
         <div className="flex gap-2">
