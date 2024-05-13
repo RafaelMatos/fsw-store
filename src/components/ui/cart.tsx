@@ -40,6 +40,7 @@ const Cart = () => {
                 return (
                   <CartItem
                     key={product.id}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     product={computeProductTotalPrice(product as any) as any}
                   />
                 )

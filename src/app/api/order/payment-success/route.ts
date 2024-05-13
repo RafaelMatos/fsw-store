@@ -33,6 +33,8 @@ export async function POST(request: NextRequest) {
         expand: ['line_items'],
       },
     )
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const lineItems = sessionWithLineItems.line_items
     // CRIAR PEDIDO
   }
