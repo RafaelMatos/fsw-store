@@ -30,7 +30,7 @@ const ProductImages = ({ imageUrls, productName }: ProductImagesProps) => {
           return (
             <button
               key={imageUrl}
-              className={`flex h-[100px] items-center justify-center rounded-lg bg-accent
+              className={`flex h-[100px] items-center justify-center rounded-lg bg-accent hover:bg-accent/80
                ${imageUrl === currentImage && 'border-2 border-solid border-primary'}
               `}
               onClick={() => handleImageClick(imageUrl)}
