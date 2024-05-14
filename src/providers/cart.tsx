@@ -35,12 +35,18 @@ export const CartContext = createContext<ICardContext>({
 })
 
 export const CardProvider = ({ children }: { children: ReactNode }) => {
-  const [products, setProducts] = useState<CartProduct[]>(
-    JSON.parse(localStorage.getItem('@fsw-store/cart-products') || '[]'),
-  )
+  const [products, setProducts] = useState<CartProduct[]>([])
 
   useEffect(() => {
-    localStorage.setItem('@fsw-store/cart-products', JSON.stringify(products))
+    const localProducts = localStorage.getItem('@fsw-store/cart-products')
+    if (localProducts) {
+      setProducts(JSON.parse(localProducts))
+    }
+  }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      localStorage.setItem('@fsw-store/cart-products', JSON.stringify(products))
+    }, 0)
   }, [products])
   // Total sem descontos
   const subTotal = useMemo(() => {
