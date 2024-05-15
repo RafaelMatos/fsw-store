@@ -1,6 +1,13 @@
 import ProductItem from '@/components/ui/product-item'
 import { computeProductTotalPrice } from '@/helpers/product'
 import { Product } from '@prisma/client'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from './carousel'
 
 interface ProductListProps {
   products: Product[]
@@ -8,18 +15,18 @@ interface ProductListProps {
 
 const ProductList = ({ products }: ProductListProps) => {
   return (
-    <div className="flex w-full gap-4 overflow-x-auto px-5 [&::-webkit-scrollbar]:hidden">
-      {products && products.length > 0 ? (
-        products.map((product) => {
-          return (
-            <div className="w-[170px] max-w-[170px]" key={product.id}>
+    <div className="flex w-full overflow-x-auto [&::-webkit-scrollbar]:hidden">
+      <Carousel className="w-full">
+        <CarouselContent className="ml-1 mr-10 gap-4">
+          {products.map((product) => (
+            <CarouselItem key={product.id} className="w-[170px] max-w-[170px]">
               <ProductItem product={computeProductTotalPrice(product)} />
-            </div>
-          )
-        })
-      ) : (
-        <p className="text-sm text-gray-400">Buscando produtos...</p>
-      )}
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="left-5 bg-background/50 hover:bg-background" />
+        <CarouselNext className="right-5 bg-background/50  hover:bg-background" />
+      </Carousel>
     </div>
   )
 }
