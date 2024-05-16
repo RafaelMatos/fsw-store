@@ -9,44 +9,74 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url               = env("DATABASE_URL")
-  directUrl         = env("DIRECT_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Category {
-  id        String    @id @default(uuid())
-  name      String
-  slug      String
+  id       String    @id @default(uuid())
+  name     String
+  slug     String
   imageUrl String
-  products   Product[]
+  products Product[]
 }
 
 model Product {
-  id                 String   @id @default(uuid())
+  id                 String         @id @default(uuid())
   name               String
   slug               String
   description        String
-  basePrice          Decimal  @db.Decimal(8, 2)
+  basePrice          Decimal        @db.Decimal(8, 2)
   imageUrls          String[]
   categoryId         String
-  category           Category @relation(fields: [categoryId], references: [id])
-  discountPercentage Int      @default(0)
+  category           Category       @relation(fields: [categoryId], references: [id])
+  discountPercentage Int            @default(0)
+  orderProducts       OrderProduct[]
+}
+
+enum OrderStatus {
+  WAITING_FOR_PAYMENT
+  PAYMENT_CONFIRMED
+}
+
+model Order {
+  id            String         @id @default(uuid())
+  number        Int            @unique @default(autoincrement())
+  userId        String
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @default(now()) @updatedAt
+  status        OrderStatus    @default(WAITING_FOR_PAYMENT)
+  orderProducts OrderProduct[]
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model OrderProduct {
+  id                 String  @id @default(uuid())
+  basePrice          Decimal @db.Decimal(8, 2)
+  discountPercentage Int     @default(0)
+  quantity           Int
+  productId          String
+  orderId            String
+
+  product Product @relation(fields: [productId], references: [id])
+  order   Order   @relation(fields: [orderId], references: [id])
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -69,6 +99,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  order         Order[]
 }
 
 model VerificationToken {
