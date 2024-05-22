@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FSW Store
 
-## Getting Started
+<!-- ![Logo do Projeto](link-para-logo.png) -->
 
-First, run the development server:
+## Índice
+1. [Descrição](#descrição)
+2. [Demonstração](#demonstração)
+3. [Funcionalidades](#funcionalidades)
+4. [Tecnologias Utilizadas](#tecnologias-utilizadas)
+5. [Instalação](#instalação)
+6. [Uso](#uso)
+7. [Estrutura do Projeto](#estrutura-do-projeto)
+8. [Contribuição](#contribuição)
+9. [Testes](#testes)
+10. [Deploy](#deploy)
+11. [Autores e Agradecimentos](#autores-e-agradecimentos)
+12. [Licença](#licença)
+
+## Descrição
+Este projeto é uma plataforma de E-commerce especializada em equipamentos gamers, desenvolvida como uma aplicação full stack utilizando tecnologias modernas para proporcionar uma experiência de usuário dinâmica e eficiente.
+
+A interface do usuário foi construída com <b>React</b>, potencializada pelo framework <b>Next.js</b> para renderização eficiente e navegação otimizada.
+
+A interação com o banco de dados é gerenciada pelo <b>Prisma</b>, garantindo uma comunicação robusta e segura.
+
+Para a criação de componentes visuais modernos e responsivos, utilizamos a biblioteca <b>Shadcn UI</b> juntamente com <b>TailwindCSS</b>, permitindo um design coeso e adaptável a diferentes dispositivos.
+
+<!-- ## Demonstração -->
+<!-- ![Captura de Tela](link-para-captura.png) -->
+
+## Funcionalidades
+- Listagem de produtos
+- Categorização de produtos
+- Carrinho de compras
+- Pagamento integrado com Stripe
+
+## Tecnologias Utilizadas
+- React
+- Next.js
+- Prisma
+- Shadcn UI
+- TailwindCSS
+- Next-Auth
+- Stripe
+
+## Instalação
+```bash
+git clone https://github.com/RafaelMatos/fsw-store.git
+
+cd seu-projeto
+
+npm install
+```
+## Uso
+Popular variaveis de ambiente seguindo arquivo env.example
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/RafaelMatos/fsw-store.git
+
+cd seu-projeto
+
+npm install
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
