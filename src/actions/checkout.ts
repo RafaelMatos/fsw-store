@@ -4,8 +4,10 @@ import Stripe from 'stripe'
 import { CartProduct } from '@/providers/cart'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const createCheckout = async (products: CartProduct[]) => {
-  // Criar checkout
+export const createCheckout = async (
+  products: CartProduct[],
+  orderId: string,
+) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: '2024-04-10',
   })
@@ -16,6 +18,9 @@ export const createCheckout = async (products: CartProduct[]) => {
     mode: 'payment',
     success_url: process.env.HOST_URL,
     cancel_url: process.env.HOST_URL,
+    metadata: {
+      orderId,
+    },
     line_items: products.map((product) => {
       return {
         price_data: {

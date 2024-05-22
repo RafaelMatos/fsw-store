@@ -1,3 +1,4 @@
+import { prismaClient } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
@@ -27,6 +28,8 @@ export async function POST(request: NextRequest) {
   }
 
   if (event.type === 'checkout.session.completed') {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const session = event.data.object as any
     const sessionWithLineItems = await stripe.checkout.sessions.retrieve(
       event.data.object.id,
       {
@@ -36,7 +39,15 @@ export async function POST(request: NextRequest) {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const lineItems = sessionWithLineItems.line_items
-    // CRIAR PEDIDO
+    // ATUALIZAR PEDIDO
+    await prismaClient.order.update({
+      where: {
+        id: session.metadata.orderId,
+      },
+      data: {
+        status: 'PAYMENT_CONFIRMED',
+      },
+    })
   }
 
   return NextResponse.json({ received: true })

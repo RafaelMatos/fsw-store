@@ -23,9 +23,9 @@ const Cart = () => {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await createOrder(products, (data.user as any).id)
+    const order = await createOrder(products, (data.user as any).id)
 
-    const checkout = await createCheckout(products)
+    const checkout = await createCheckout(products, order.id)
 
     const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY)
 
@@ -91,6 +91,7 @@ const Cart = () => {
           <Button
             className="mt-7 font-bold uppercase"
             onClick={handleFinishPurchaseClick}
+            disabled={!data?.user}
           >
             Finalizar compra
           </Button>
