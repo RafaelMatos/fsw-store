@@ -9,6 +9,10 @@ import { Prisma } from '@prisma/client'
 import { format } from 'date-fns'
 import OrderProductItem from './order-product-item'
 import { Separator } from '@/components/ui/separator'
+import PriceItem from './price-item'
+import { useMemo } from 'react'
+import { computeProductTotalPrice } from '@/helpers/product'
+import { Badge } from '@/components/ui/badge'
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{
@@ -23,17 +27,49 @@ interface OrderItemProps {
 }
 
 const OrderItem = ({ order }: OrderItemProps) => {
+  const subtotal = useMemo(() => {
+    return order.orderProducts.reduce((acc, orderProduct) => {
+      return (
+        acc + Number(orderProduct.product.basePrice) * orderProduct.quantity
+      )
+    }, 0)
+  }, [order.orderProducts])
+
+  const total = useMemo(() => {
+    return order.orderProducts.reduce((acc, product) => {
+      const productTotalPrice = computeProductTotalPrice(product.product)
+      return acc + productTotalPrice.totalPrice * product.quantity
+    }, 0)
+  }, [order.orderProducts])
+
+  const totalDiscounts = subtotal - total
   return (
     <Card className="px-5">
       <Accordion type="single" className="w-full " collapsible>
-        <AccordionItem value={order.id}>
+        <AccordionItem value={order.id} className=" border-b-0">
           <AccordionTrigger>
-            <div className="flex flex-col gap-1 text-left">
-              Pedido com {order.orderProducts.length}{' '}
-              {order.orderProducts.length > 1 ? 'produtos' : 'produto'}
+            <div className=" flex w-full flex-col  gap-1 text-left sm:flex-row md:justify-between">
+              {/* <div className="flex h-[60px]  w-[70px] items-center  justify-center rounded-lg bg-accent">
+                <Image
+                  src={order.orderProducts[0].product.imageUrls[0]}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="h-auto max-h-[70%] w-auto max-w-[80%] object-contain"
+                  alt={order.orderProducts[0].product.name}
+                />
+              </div> */}
+              <p>
+                Pedido com {order.orderProducts.length}{' '}
+                {order.orderProducts.length > 1 ? 'produtos' : 'produto'}
+              </p>
+              <span className="text-sm opacity-60">
+                Feito em {format(order.createdAt, "d/MM/y 'às' HH:mm")}
+              </span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-4">
+            <Separator />
             <div className="flex flex-col ">
               <div className="flex items-center justify-between">
                 <div className="font-bold">
@@ -53,15 +89,25 @@ const OrderItem = ({ order }: OrderItemProps) => {
               </div>
             </div>
             <Separator />
-            <div className="flex flex-col gap-2">
-              {order.orderProducts.map((orderProduct) => {
-                return (
-                  <OrderProductItem
-                    key={orderProduct.id}
-                    orderProduct={orderProduct}
-                  />
-                )
-              })}
+            <Badge
+              className="w-fit gap-1 border border-primary px-3 py-[0.375rem] text-base"
+              variant="outline"
+            >
+              Produtos
+            </Badge>
+            {order.orderProducts.map((orderProduct) => {
+              return (
+                <OrderProductItem
+                  key={orderProduct.id}
+                  orderProduct={orderProduct}
+                />
+              )
+            })}
+            <div className="flex w-full flex-col gap-1 text-xs">
+              <PriceItem title="Subtotal" value={subtotal} />
+              <PriceItem title="Entrega" />
+              <PriceItem title="Descontos" value={totalDiscounts} discount />
+              <PriceItem total title="Total" value={total} />
             </div>
           </AccordionContent>
         </AccordionItem>
