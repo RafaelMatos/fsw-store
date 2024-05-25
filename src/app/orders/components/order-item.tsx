@@ -50,7 +50,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
       <Accordion type="single" className="w-full " collapsible>
         <AccordionItem value={order.id} className=" border-b-0">
           <AccordionTrigger>
-            <div className=" flex w-full flex-col  gap-1 text-left sm:flex-row sm:justify-between">
+            <div className=" flex w-full flex-col  items-center gap-1 text-left sm:flex-row sm:justify-between">
               {/* <div className="flex h-[60px]  w-[70px] items-center  justify-center rounded-lg bg-accent">
                 <Image
                   src={order.orderProducts[0].product.imageUrls[0]}
@@ -96,7 +96,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
                 <div className="">
                   <p className="font-bold">Previsão de entrega</p>
                   <p className="opacity-60">
-                    {order.status === 'WAITING_FOR_PAYMENT'
+                    {order.status === 'PAYMENT_CONFIRMED'
                       ? format(addDays(order.createdAt, 10), 'dd/MM/yyyy')
                       : '--/--/----'}
                   </p>
