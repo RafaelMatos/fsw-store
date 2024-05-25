@@ -6,13 +6,14 @@ import {
 } from '@/components/ui/accordion'
 import { Card } from '@/components/ui/card'
 import { Prisma } from '@prisma/client'
-import { format } from 'date-fns'
+import { addDays, format } from 'date-fns'
 import OrderProductItem from './order-product-item'
 import { Separator } from '@/components/ui/separator'
 import PriceItem from './price-item'
 import { useMemo } from 'react'
 import { computeProductTotalPrice } from '@/helpers/product'
 import { Badge } from '@/components/ui/badge'
+import { getOrderStatus } from '../helpers/status'
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{
@@ -48,7 +49,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
       <Accordion type="single" className="w-full " collapsible>
         <AccordionItem value={order.id} className=" border-b-0">
           <AccordionTrigger>
-            <div className=" flex w-full flex-col  gap-1 text-left sm:flex-row md:justify-between">
+            <div className=" flex w-full flex-col  gap-1 text-left sm:flex-row sm:justify-between">
               {/* <div className="flex h-[60px]  w-[70px] items-center  justify-center rounded-lg bg-accent">
                 <Image
                   src={order.orderProducts[0].product.imageUrls[0]}
@@ -71,10 +72,16 @@ const OrderItem = ({ order }: OrderItemProps) => {
           <AccordionContent className="flex flex-col gap-4">
             <Separator />
             <div className="flex flex-col ">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between">
                 <div className="font-bold">
                   <p>Status</p>
-                  <p className="text-[#8162FF]">{order.status}</p>
+                  <p className="text-[#8162FF]">
+                    {getOrderStatus(order.status)}
+                  </p>
+                </div>
+                <div className="">
+                  <p className="font-bold">Pagamento</p>
+                  <p className="opacity-60">Cartão</p>
                 </div>
                 <div className="">
                   <p className="font-bold">Data</p>
@@ -83,8 +90,12 @@ const OrderItem = ({ order }: OrderItemProps) => {
                   </p>
                 </div>
                 <div className="">
-                  <p className="font-bold">Pagamento</p>
-                  <p className="opacity-60">Cartão</p>
+                  <p className="font-bold">Previsão de entrega</p>
+                  <p className="opacity-60">
+                    {order.status === 'WAITING_FOR_PAYMENT'
+                      ? format(addDays(order.createdAt, 10), 'dd/MM/yyyy')
+                      : '--/--/----'}
+                  </p>
                 </div>
               </div>
             </div>
