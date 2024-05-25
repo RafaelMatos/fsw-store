@@ -44,6 +44,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
   }, [order.orderProducts])
 
   const totalDiscounts = subtotal - total
+  const orderNumber = String(order.number).padStart(3, '0')
   return (
     <Card className="px-5">
       <Accordion type="single" className="w-full " collapsible>
@@ -60,10 +61,13 @@ const OrderItem = ({ order }: OrderItemProps) => {
                   alt={order.orderProducts[0].product.name}
                 />
               </div> */}
-              <p>
-                Pedido com {order.orderProducts.length}{' '}
-                {order.orderProducts.length > 1 ? 'produtos' : 'produto'}
-              </p>
+              <div className="flex flex-col gap-1">
+                <p>Pedido #{orderNumber}</p>
+                <p className="text-xs opacity-60">
+                  {order.orderProducts.length}{' '}
+                  {order.orderProducts.length > 1 ? 'produtos' : 'produto'}
+                </p>
+              </div>
               <span className="text-sm opacity-60">
                 Feito em {format(order.createdAt, "d/MM/y 'às' HH:mm")}
               </span>
