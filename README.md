@@ -33,6 +33,7 @@ Para a criação de componentes visuais modernos e responsivos, utilizamos a bib
 - Categorização de produtos
 - Carrinho de compras
 - Pagamento integrado com Stripe
+- Página de Meus pedidos
 
 ## Tecnologias Utilizadas
 - React
