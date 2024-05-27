@@ -10,15 +10,9 @@ const OrderPage = async () => {
   const session = await auth()
   if (!session || !session.user) {
     return (
-      <div className="p-5">
-        <Badge
-          className="w-fit gap-1 border-2 border-primary px-3 py-[0.375rem] text-base uppercase"
-          variant="outline"
-        >
-          <PackageSearchIcon size={16} />
-          Meus Pedidos
-        </Badge>
-        <p>Necessario realizar login</p>
+      <div className="flex h-full flex-col items-center justify-center">
+        <p className="text-lg">Acesso negado!</p>
+        <p className="text-sm opacity-75">Necessário realizar o login.</p>
       </div>
     )
   }

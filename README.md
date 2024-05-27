@@ -58,7 +58,7 @@ Popular variaveis de ambiente seguindo arquivo env.example
 ```bash
 git clone https://github.com/RafaelMatos/fsw-store.git
 
-cd seu-projeto
+cd fsw-store
 
 npm install
 ```
