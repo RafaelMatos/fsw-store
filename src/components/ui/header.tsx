@@ -24,9 +24,13 @@ import { Avatar, AvatarFallback, AvatarImage } from './avatar'
 import { Separator } from './separator'
 import Link from 'next/link'
 import Cart from './cart'
+import { Badge } from './badge'
+import { CartContext } from '@/providers/cart'
+import { useContext } from 'react'
 
 const Header = () => {
   const { status, data } = useSession()
+  const { products } = useContext(CartContext)
   const handleClickSignIn = async () => {
     await googleAuthenticate()
   }
@@ -150,7 +154,12 @@ const Header = () => {
 
       <Sheet>
         <SheetTrigger asChild>
-          <Button size="icon" variant="outline">
+          <Button size="icon" variant="outline" className="relative">
+            {products && products.length > 0 && (
+              <Badge className="absolute -left-4 -top-3 px-2 text-xs opacity-60">
+                {products.length}
+              </Badge>
+            )}
             <ShoppingCartIcon />
           </Button>
         </SheetTrigger>
