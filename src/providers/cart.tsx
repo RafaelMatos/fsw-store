@@ -18,6 +18,7 @@ interface ICardContext {
   decreaseProductQuantity: (productId: string) => void
   increaseProductQuantity: (productId: string) => void
   removeProductFromCart: (productId: string) => void
+  removeAllProductsFromCart: () => void
 }
 
 export const CartContext = createContext<ICardContext>({
@@ -32,6 +33,7 @@ export const CartContext = createContext<ICardContext>({
   decreaseProductQuantity: () => {},
   increaseProductQuantity: () => {},
   removeProductFromCart: () => {},
+  removeAllProductsFromCart: () => {},
 })
 
 export const CardProvider = ({ children }: { children: ReactNode }) => {
@@ -122,6 +124,9 @@ export const CardProvider = ({ children }: { children: ReactNode }) => {
       prev.filter((cartProduct) => cartProduct.id !== productId),
     )
   }
+  const removeAllProductsFromCart = () => {
+    setProducts([])
+  }
 
   return (
     <CartContext.Provider
@@ -137,6 +142,7 @@ export const CardProvider = ({ children }: { children: ReactNode }) => {
         decreaseProductQuantity,
         increaseProductQuantity,
         removeProductFromCart,
+        removeAllProductsFromCart,
       }}
     >
       {children}

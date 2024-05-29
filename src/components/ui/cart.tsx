@@ -14,7 +14,13 @@ import { createOrder } from '@/actions/order'
 
 const Cart = () => {
   const { data } = useSession()
-  const { products, subTotal, totalDiscount, total } = useContext(CartContext)
+  const {
+    products,
+    subTotal,
+    totalDiscount,
+    total,
+    removeAllProductsFromCart,
+  } = useContext(CartContext)
 
   const handleFinishPurchaseClick = async () => {
     if (!data?.user) {
@@ -29,9 +35,10 @@ const Cart = () => {
 
     const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY)
 
-    // Criar pedido no banco
+    removeAllProductsFromCart()
 
-    stripe?.redirectToCheckout({
+    // Criar pedido no banco
+    await stripe?.redirectToCheckout({
       sessionId: checkout.id,
     })
   }
