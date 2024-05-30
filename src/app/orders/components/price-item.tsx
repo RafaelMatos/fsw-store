@@ -17,9 +17,9 @@ const PriceItem = ({
     <>
       <Separator />
       <div
-        className={`flex w-full justify-between py-3 
-        ${withoutDiscount && 'opacity-30'}
-        ${total ? 'text-sm font-bold text-[#8162FF]' : 'opacity-75'}
+        className={`flex w-full justify-between py-3
+        ${withoutDiscount ? 'opacity-30' : 'opacity-75'}
+        ${total ? 'text-lg font-bold text-[#8162FF]' : 'text-sm '}
         `}
       >
         <p className="font-bold">{title}</p>
