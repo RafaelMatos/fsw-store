@@ -4,13 +4,13 @@ import { useContext } from 'react'
 import { CartContext } from '@/providers/cart'
 import CartItem from './cart-item'
 import { computeProductTotalPrice } from '@/helpers/product'
-import { Separator } from './separator'
 import { ScrollArea } from './scroll-area'
 import { Button } from './button'
 import { createCheckout } from '@/actions/checkout'
 import { loadStripe } from '@stripe/stripe-js'
 import { useSession } from 'next-auth/react'
 import { createOrder } from '@/actions/order'
+import PriceItem from '@/app/orders/components/price-item'
 
 const Cart = () => {
   const { data } = useSession()
@@ -74,27 +74,11 @@ const Cart = () => {
         </ScrollArea>
       </div>
       {products.length > 0 && (
-        <div className="flex flex-col gap-3">
-          <Separator />
-          <div className="flex items-center justify-between text-xs">
-            <p>Subtotal</p>
-            <p>R${Number(subTotal.toFixed(2))}</p>
-          </div>
-          <Separator />
-          <div className="flex items-center justify-between text-xs">
-            <p>Entrega</p>
-            <p>GRÁTIS</p>
-          </div>
-          <Separator />
-          <div className="flex items-center justify-between text-xs">
-            <p>Descontos</p>
-            <p>- R${Number(totalDiscount.toFixed(2))}</p>
-          </div>
-          <Separator />
-          <div className="flex items-center justify-between text-sm font-bold">
-            <p>Total</p>
-            <p> R${Number(total.toFixed(2))}</p>
-          </div>
+        <div className="flex flex-col text-sm">
+          <PriceItem value={subTotal} title="Subtotal" />
+          <PriceItem title="Entrega" />
+          <PriceItem value={totalDiscount} title="Descontos" discount />
+          <PriceItem value={total} title="Total" total />
           <Button
             className="mt-7 font-bold uppercase"
             onClick={handleFinishPurchaseClick}

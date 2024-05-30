@@ -118,7 +118,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
                 />
               )
             })}
-            <div className="flex w-full flex-col gap-1 text-xs">
+            <div className="flex w-full flex-col gap-1">
               <PriceItem title="Subtotal" value={subtotal} />
               <PriceItem title="Entrega" />
               <PriceItem title="Descontos" value={totalDiscounts} discount />
