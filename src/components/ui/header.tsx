@@ -107,17 +107,19 @@ const Header = () => {
               </Link>
             </SheetClose>
 
-            <SheetClose asChild>
-              <Link href="/orders">
-                <Button
-                  variant="outline"
-                  className="w-full justify-start gap-1"
-                >
-                  <PackageSearchIcon size={16} />
-                  Meus Pedidos
-                </Button>
-              </Link>
-            </SheetClose>
+            {status === 'authenticated' && data?.user && (
+              <SheetClose asChild>
+                <Link href="/orders">
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start gap-1"
+                  >
+                    <PackageSearchIcon size={16} />
+                    Meus Pedidos
+                  </Button>
+                </Link>
+              </SheetClose>
+            )}
 
             <SheetClose asChild>
               <Link href="/deals">
