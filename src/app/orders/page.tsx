@@ -12,7 +12,7 @@ const OrderPage = async () => {
     return (
       <div className="flex h-full flex-col items-center justify-center">
         <p className="text-lg">Acesso negado!</p>
-        <p className="text-sm opacity-75">Necessário realizar o login.</p>
+        <p className="text-sm opacity-75">Faça login para ver seus pedidos</p>
       </div>
     )
   }
