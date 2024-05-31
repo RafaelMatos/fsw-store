@@ -10,7 +10,7 @@ import { createCheckout } from '@/actions/checkout'
 import { loadStripe } from '@stripe/stripe-js'
 import { useSession } from 'next-auth/react'
 import { createOrder } from '@/actions/order'
-import PriceItem from '@/app/orders/components/price-item'
+import PriceItem from '@/app/(shop)/orders/components/price-item'
 
 const Cart = () => {
   const { data } = useSession()

@@ -1,7 +1,7 @@
 'use server'
 
 import { Badge } from '@/components/ui/badge'
-import { auth } from '../../../auth'
+import { auth } from '../../../../auth'
 import { PackageSearchIcon } from 'lucide-react'
 import { prismaClient } from '@/lib/prisma'
 import OrderItem from './components/order-item'
