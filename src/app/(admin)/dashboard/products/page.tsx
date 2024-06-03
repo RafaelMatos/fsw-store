@@ -2,6 +2,8 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { prismaClient } from '@/lib/prisma'
 import { PackageIcon, PlusIcon } from 'lucide-react'
+import ProductsTable from './components/products-table'
+import { computeProductTotalPrice } from '@/helpers/product'
 
 const ProductsPage = async () => {
   const products = await prismaClient.product.findMany({
@@ -9,8 +11,11 @@ const ProductsPage = async () => {
       name: 'asc',
     },
   })
+  const productsWithTotalPrice = products.map((product) =>
+    computeProductTotalPrice(product),
+  )
   return (
-    <div className="flex w-full flex-col gap-10 p-10">
+    <div className="flex w-full flex-col gap-10 overflow-x-hidden p-10">
       <Badge
         className="w-fit gap-1 border-2 border-primary px-3 py-[0.375rem] text-base uppercase"
         variant="outline"
@@ -19,7 +24,7 @@ const ProductsPage = async () => {
         Produtos
       </Badge>
 
-      <div className="flex w-full items-center justify-between">
+      <div className="flex w-full flex-col items-center justify-between md:flex-row">
         <p className="text-xl font-bold">
           Produtos encontrados: {products.length}
         </p>
@@ -28,9 +33,7 @@ const ProductsPage = async () => {
           Adicionar produto
         </Button>
       </div>
-      {products.map((product) => {
-        return <p key={product.id}>{product.name}</p>
-      })}
+      <ProductsTable products={productsWithTotalPrice} />
     </div>
   )
 }
