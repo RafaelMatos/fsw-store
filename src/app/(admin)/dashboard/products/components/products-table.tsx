@@ -50,9 +50,9 @@ const ProductsTable = ({ products }: ProductsTableProps) => {
               <TableRow key={product.id}>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.category.name}</TableCell>
-                <TableCell>{product.totalPrice.toFixed(2)}</TableCell>
-                <TableCell>{product.basePrice.toFixed(2)}</TableCell>
-                <TableCell>{product.discountPercentage}</TableCell>
+                <TableCell>R$ {product.totalPrice.toFixed(2)}</TableCell>
+                <TableCell>R$ {product.basePrice.toFixed(2)}</TableCell>
+                <TableCell>{product.discountPercentage}%</TableCell>
                 <TableCell>{30}</TableCell>
               </TableRow>
             )
