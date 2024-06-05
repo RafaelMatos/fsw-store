@@ -20,7 +20,12 @@ const ProductList = ({ products }: ProductListProps) => {
         <CarouselContent className="ml-1 mr-10 gap-4">
           {products.map((product) => (
             <CarouselItem key={product.id} className="w-[170px] max-w-[170px]">
-              <ProductItem product={computeProductTotalPrice(product)} />
+              <ProductItem
+                product={{
+                  ...product,
+                  totalPrice: computeProductTotalPrice(product),
+                }}
+              />
             </CarouselItem>
           ))}
         </CarouselContent>

@@ -22,8 +22,8 @@ const ProductsPage = async () => {
   })
   const productsWithTotalPrice: ProductWithTotalPriceAndCategory[] =
     products.map((product) => ({
-      ...computeProductTotalPrice(product),
-      category: product.category,
+      ...product,
+      totalPrice: computeProductTotalPrice(product),
     }))
   return (
     <div className="flex w-full flex-col gap-10 overflow-x-hidden p-10">

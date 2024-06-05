@@ -37,7 +37,10 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
           return (
             <ProductItem
               key={product.id}
-              product={computeProductTotalPrice(product)}
+              product={{
+                ...product,
+                totalPrice: computeProductTotalPrice(product),
+              }}
             />
           )
         })}

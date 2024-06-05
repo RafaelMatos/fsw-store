@@ -41,7 +41,12 @@ const ProductDetailsPage = async ({
           imageUrls={product.imageUrls}
           productName={product.name}
         />
-        <ProductInfo product={computeProductTotalPrice(product)} />
+        <ProductInfo
+          product={{
+            ...product,
+            totalPrice: computeProductTotalPrice(product),
+          }}
+        />
       </div>
       <div className=" flex flex-col">
         <SectionTitle>Produtos Recomendados</SectionTitle>
