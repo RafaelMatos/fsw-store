@@ -31,7 +31,7 @@ const OrderPage = async () => {
   })
 
   return (
-    <div className="flex flex-col gap-8 p-5">
+    <div className="flex h-full flex-col gap-8 p-5">
       <Badge
         className="w-fit gap-1 border-2 border-primary px-3 py-[0.375rem] text-base uppercase"
         variant="outline"
@@ -39,10 +39,17 @@ const OrderPage = async () => {
         <PackageSearchIcon size={16} />
         Meus Pedidos
       </Badge>
-      <div className=" flex flex-col gap-5">
-        {orders.map((order) => {
-          return <OrderItem key={order.id} order={order} />
-        })}
+      <div className=" flex h-full flex-col gap-5">
+        {orders.length ? (
+          orders.map((order) => {
+            return <OrderItem key={order.id} order={order} />
+          })
+        ) : (
+          <div className="flex h-full flex-col items-center justify-center">
+            <p className="text-lg">Não há pedidos!</p>
+            <p className="text-sm opacity-75">Realize sua primeira compra.</p>
+          </div>
+        )}
       </div>
     </div>
   )
