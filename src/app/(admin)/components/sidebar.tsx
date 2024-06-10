@@ -36,10 +36,17 @@ const Sidebar = () => {
             Produtos
           </Button>
         </Link>
-        <Button variant="outline" className="w-full justify-start gap-2">
-          <ListOrderedIcon size={16} />
-          Categorias
-        </Button>
+        <Link href="/dashboard/categories">
+          <Button
+            variant="outline"
+            className={`w-full justify-start gap-2
+          ${path.includes('/categories') && 'bg-primary hover:bg-primary/50'}
+        `}
+          >
+            <ListOrderedIcon size={16} />
+            Categorias
+          </Button>
+        </Link>
         <Button variant="outline" className="w-full justify-start gap-2">
           <PackageSearchIcon size={16} />
           Pedidos
