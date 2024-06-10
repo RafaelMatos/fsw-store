@@ -7,7 +7,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { ProductWithTotalPrice } from '@/helpers/product'
-import { Category } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 
 export type ProductWithTotalPriceAndCategory = ProductWithTotalPrice & {
   category: {
@@ -16,7 +16,15 @@ export type ProductWithTotalPriceAndCategory = ProductWithTotalPrice & {
 }
 
 interface CategoriesProps {
-  categories: Category[]
+  categories: Prisma.CategoryGetPayload<{
+    include: {
+      products: {
+        select: {
+          id: true
+        }
+      }
+    }
+  }>[]
 }
 
 const CategoriesTable = ({ categories }: CategoriesProps) => {
@@ -41,7 +49,7 @@ const CategoriesTable = ({ categories }: CategoriesProps) => {
             return (
               <TableRow key={category.id}>
                 <TableCell>{category.name}</TableCell>
-                <TableCell>{30}</TableCell>
+                <TableCell>{category.products.length}</TableCell>
                 <TableCell>{30}%</TableCell>
               </TableRow>
             )
