@@ -26,7 +26,7 @@ const ProductsPage = async () => {
       totalPrice: computeProductTotalPrice(product),
     }))
   return (
-    <div className="flex w-full flex-col gap-10 overflow-x-hidden p-10">
+    <div className="flex w-full flex-col gap-10 p-10">
       <Badge
         className="w-fit gap-1 border-2 border-primary px-3 py-[0.375rem] text-base uppercase"
         variant="outline"

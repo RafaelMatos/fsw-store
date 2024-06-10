@@ -20,9 +20,9 @@ interface ProductsTableProps {
 
 const ProductsTable = ({ products }: ProductsTableProps) => {
   return (
-    <div className="flex flex-col rounded-t-lg">
-      <Table className="">
-        <TableHeader className="">
+    <div className="flex flex-col overflow-y-auto rounded-t-lg">
+      <Table>
+        <TableHeader>
           <TableRow>
             <TableHead className=" rounded-tl-lg bg-accent hover:bg-accent/30">
               Nome
