@@ -24,22 +24,22 @@ const ProductsTable = ({ products }: ProductsTableProps) => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className=" rounded-tl-lg bg-accent hover:bg-accent/30">
+            <TableHead className=" rounded-tl-lg bg-accent hover:bg-[#101010] ">
               Nome
             </TableHead>
-            <TableHead className=" bg-accent hover:bg-accent/60">
+            <TableHead className=" bg-accent hover:bg-[#101010] ">
               Categoria
             </TableHead>
-            <TableHead className=" bg-accent hover:bg-accent/60">
+            <TableHead className=" bg-accent hover:bg-[#101010] ">
               Preço total
             </TableHead>
-            <TableHead className=" bg-accent hover:bg-accent/60">
+            <TableHead className=" bg-accent hover:bg-[#101010] ">
               Preço base
             </TableHead>
-            <TableHead className=" bg-accent hover:bg-accent/60">
+            <TableHead className=" bg-accent hover:bg-[#101010] ">
               Desconto %
             </TableHead>
-            <TableHead className=" rounded-tr-lg bg-accent hover:bg-accent/60">
+            <TableHead className=" rounded-tr-lg bg-accent hover:bg-[#101010] ">
               Vendidos
             </TableHead>
           </TableRow>

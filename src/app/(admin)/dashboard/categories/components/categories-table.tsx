@@ -33,13 +33,13 @@ const CategoriesTable = ({ categories }: CategoriesProps) => {
       <Table className="">
         <TableHeader className="">
           <TableRow>
-            <TableHead className=" rounded-tl-lg bg-accent  hover:bg-accent/30">
+            <TableHead className=" rounded-tl-lg bg-accent hover:bg-[#101010] ">
               Nome
             </TableHead>
-            <TableHead className=" bg-accent  hover:bg-accent/60">
+            <TableHead className=" bg-accent hover:bg-[#101010] ">
               Produtos
             </TableHead>
-            <TableHead className="rounded-tr-lg bg-accent  hover:bg-accent/60">
+            <TableHead className=" rounded-tr-lg bg-accent hover:bg-[#101010] ">
               Porcentagem das Vendas
             </TableHead>
           </TableRow>
