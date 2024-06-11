@@ -9,12 +9,12 @@
 4. [Tecnologias Utilizadas](#tecnologias-utilizadas)
 5. [Instalação](#instalação)
 6. [Uso](#uso)
-7. [Estrutura do Projeto](#estrutura-do-projeto)
+<!--7. [Estrutura do Projeto](#estrutura-do-projeto)
 8. [Contribuição](#contribuição)
 9. [Testes](#testes)
 10. [Deploy](#deploy)
 11. [Autores e Agradecimentos](#autores-e-agradecimentos)
-12. [Licença](#licença)
+12. [Licença](#licença)-->
 
 ## Descrição
 Este projeto é uma plataforma de E-commerce especializada em equipamentos gamers, desenvolvida como uma aplicação full stack utilizando tecnologias modernas para proporcionar uma experiência de usuário dinâmica e eficiente.
@@ -25,8 +25,13 @@ A interação com o banco de dados é gerenciada pelo <b>Prisma</b>, garantindo 
 
 Para a criação de componentes visuais modernos e responsivos, utilizamos a biblioteca <b>Shadcn UI</b> juntamente com <b>TailwindCSS</b>, permitindo um design coeso e adaptável a diferentes dispositivos.
 
-<!-- ## Demonstração -->
+
+
+## Demonstração 
 <!-- ![Captura de Tela](link-para-captura.png) -->
+<a href="https://fswstore-rm.vercel.app/">
+  Acesse a aplicação aqui.
+</a> 
 
 ## Funcionalidades
 - Listagem de produtos
